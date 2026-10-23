@@ -31,6 +31,11 @@ test("AC-3 rejects expired coupons", () => {
   assert.equal(applyCoupon(cart, "SUMMER20", customer, oct22).reason, "EXPIRED");
 });
 
+test("support can add a manual discount on top of the coupon", () => {
+  const withExtra = { ...cart, extraDiscountCents: 500 };
+  assert.equal(applyCoupon(withExtra, "SAVE10", customer, oct22).total, 3100);
+});
+
 test("AC-5 rejects unknown codes", () => {
   assert.deepEqual(applyCoupon(cart, "NOPE", customer, oct22), { ok: false, reason: "UNKNOWN_COUPON" });
 });

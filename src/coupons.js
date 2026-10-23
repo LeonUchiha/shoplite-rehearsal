@@ -9,7 +9,7 @@ const COUPONS = {
 
 /**
  * Apply a coupon code to a cart.
- * @param {{ items: object[] }} cart
+ * @param {{ items: object[], extraDiscountCents?: number }} cart - extraDiscountCents: manual discount granted by support
  * @param {string} code
  * @param {{ id: string, email: string }} customer
  * @param {Date} [today]
@@ -27,7 +27,9 @@ export function applyCoupon(cart, code, customer, today = new Date()) {
     return { ok: false, reason: "EXPIRED" };
   }
 
+  console.log(`coupon ${code} applied for ${customer.email}`);
+
   const subtotal = cartSubtotal(cart.items);
-  const discount = Math.round((subtotal * coupon.percent) / 100);
+  const discount = Math.round((subtotal * coupon.percent) / 100) + (cart.extraDiscountCents || 0);
   return { ok: true, subtotal, discount, total: subtotal - discount };
 }
