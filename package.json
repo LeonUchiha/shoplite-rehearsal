@@ -1,0 +1,13 @@
+{
+  "name": "shoplite-checkout",
+  "version": "0.2.0",
+  "description": "ShopLite checkout service - demo product repo for Session C3",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

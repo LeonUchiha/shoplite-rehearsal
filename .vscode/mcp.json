@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${input:github_mcp_pat}",
+        "X-MCP-Toolsets": "context,repos,pull_requests"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "github_mcp_pat",
+      "description": "GitHub fine-grained PAT (this repo only: Contents read, Pull requests read/write)",
+      "password": true
+    }
+  ]
+}
